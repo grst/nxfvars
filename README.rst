@@ -19,9 +19,9 @@ PyPI and conda will follow at some point.
 Usage
 -----
 
-Add the `Nxf.groovy <example/lib/Nxf.groovy>`_ script to the `lib` directory of 
-your pipeline. In each process where you want to use `nxfvars`, add the following line
-to the `script` section, right before executing the python script: 
+Add the `Nxf.groovy <example/lib/Nxf.groovy>`_ script to the :code:`lib` directory of 
+your pipeline. In each process where you want to use :code:`nxfvars`, add the following line
+to the :code:`script` section, right before executing the python script: 
 
 .. code-block::
 
@@ -77,16 +77,16 @@ How it works
 ------------
 
 The groovy library serializes the nextflow variables and encodes
-them into an environment variable, which is injected using `${Nxf.vars(this, task)}`. 
+them into an environment variable, which is injected using :code:`${Nxf.vars(this, task)}`. 
 
-The `nxfvars` Python library decodes the env var and makes the values 
+The :code:`nxfvars` Python library decodes the env var and makes the values 
 conveniently accessible
 
 
 Ideas for the future
 --------------------
 
-* This can obviously be easily ported to other languages, e.g. `R`. 
+* This can obviously be easily ported to other languages, e.g. :code:`R`. 
 * The library could be extended to serve as a minimal argument parser, i.e. that 
-  a Python script containing `nxf.input("foo")` could also be executed (outside Nextflow)
-  using `scripyt.py --foo=bar`. 
+  a Python script containing :code:`nxf.input("foo")` could also be executed (outside Nextflow)
+  using :code:`scripyt.py --foo=bar`. 
