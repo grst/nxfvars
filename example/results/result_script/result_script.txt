@@ -1,0 +1,8 @@
+Input 'bar':  bar
+Input 'foo':  test_input.txt
+Params 'global_param':  Hey, I'm a global parameter
+Params 'module_param':  Hey, I'm a module parameter
+Task 'cpus':  Hey, I'm a module parameter
+
+The content of 'foo' is  Lorem ipusm dolor sit amet
+Hello World!

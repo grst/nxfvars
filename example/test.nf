@@ -1,4 +1,3 @@
-params.testparam = "xxx"
 import groovy.json.JsonBuilder
 
 def nxfVars(task) {
@@ -26,19 +25,51 @@ def nxfVars(task) {
     def nxf_vars_b64 = builder.toString().bytes.encodeBase64().toString()
 
     // Generate a line that can be added to the bash script. 
-    "NXF_VARS=\"${nxf_vars_b64}\""
+    "export NXF_VARS=\"${nxf_vars_b64}\""
 }
 
-process TEST {
-    
+params.module_parame = "bar"
+
+process TEST_SCRIPT {
+
+    publishDir "results/result_script", mode: 'copy'
+    cpus 2
+
     input:
     val bar
     path foo
-    env MYENV
+    path nxfvars
+
+    output:
+    path "result_script.txt"
 
     script:
     """
     ${nxfVars(task)}
-    test.py
+    test.py > result_script.txt
     """
 }
+
+
+process TEST_NOTEBOOK {
+    
+    conda "conda-forge::jupyterlab conda-forge::ipython=7.19.0"
+    publishDir "results/result_notebook", mode: 'copy'
+    cpus 2
+
+    input:
+    path notebook
+    val bar
+    path foo
+    path nxfvars
+
+    output:
+    path "*.html"
+
+    script:
+    """
+    ${nxfVars(task)}
+    jupyter nbconvert ${notebook} --execute --to html 
+    """
+}
+
