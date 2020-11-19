@@ -11,6 +11,7 @@ include {
 // instead of staging it manually
 nxfvars = Channel.fromPath("../nxfvars")
 
+
 workflow {
     TEST_SCRIPT("bar", Channel.fromPath("data/test_input.txt"), nxfvars)
     TEST_NOTEBOOK(
