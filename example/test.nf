@@ -1,4 +1,4 @@
-params.module_parame = "bar"
+params.module_param = "bar"
 
 process TEST_SCRIPT {
 
