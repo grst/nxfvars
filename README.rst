@@ -1,7 +1,7 @@
 nxfvars: Access nextflow variables from python scripts or notebooks
 ===================================================================
 
-This is a proof-of-concept how to make it easiert to access nextflow vars from
+This is a proof-of-concept how to make it easier to access nextflow vars from
 python scripts or notebooks.
 
 Installation
@@ -19,7 +19,7 @@ PyPI and conda will follow at some point.
 Usage
 -----
 
-Add the `Nxf.groovy<example/lib/Nxf.groovy>`_ script to the `lib` directory of 
+Add the `Nxf.groovy <example/lib/Nxf.groovy>`_ script to the `lib` directory of 
 your pipeline. In each process where you want to use `nxfvars`, add the following line
 to the `script` section, right before executing the python script: 
 
@@ -67,6 +67,9 @@ default values:
 .. code-block:: python
 
     nxf.input('bar', "/path/to/some/file.foo")
+    
+ 
+For a full example pipeline, see the `example directory <example/>`_. 
 
 
 
@@ -83,7 +86,7 @@ conveniently accessible
 Ideas for the future
 --------------------
 
- * This can obviously be easily ported to other languages, e.g. `R`. 
- * The library could be extended to serve as a minimal argument parser, i.e. that 
-   a Python script containing `nxf.input("foo")` could also be executed (outside Nextflow)
-   using `scripyt.py --foo=bar`. 
+* This can obviously be easily ported to other languages, e.g. `R`. 
+* The library could be extended to serve as a minimal argument parser, i.e. that 
+  a Python script containing `nxf.input("foo")` could also be executed (outside Nextflow)
+  using `scripyt.py --foo=bar`. 
