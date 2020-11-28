@@ -1,7 +1,10 @@
 params.module_param = "bar"
 
+include {nxfVars} from "./nxfvars.nf"
+
 process TEST_SCRIPT {
 
+    conda "conda-forge::setuptools_scm conda-forge::flit"
     publishDir "results/result_script", mode: 'copy'
     cpus 2
 
@@ -15,7 +18,7 @@ process TEST_SCRIPT {
 
     script:
     """
-    ${Nxf.vars(this, task)}
+    ${nxfVars(task)}
     test.py > result_script.txt
     """
 }
@@ -23,7 +26,7 @@ process TEST_SCRIPT {
 
 process TEST_NOTEBOOK {
     
-    conda "conda-forge::jupyterlab conda-forge::ipython=7.19.0"
+    conda "conda-forge::jupyterlab conda-forge::ipython=7.19.0 conda-forge::setuptools_scm conda-forge::flit"
     publishDir "results/result_notebook", mode: 'copy'
     cpus 2
 
@@ -38,7 +41,7 @@ process TEST_NOTEBOOK {
 
     script:
     """
-    ${Nxf.vars(this, task)}
+    ${nxfVars(task)}
     jupyter nbconvert ${notebook} --execute --to html 
     """
 }

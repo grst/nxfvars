@@ -19,13 +19,19 @@ PyPI and conda will follow at some point.
 Usage
 -----
 
-Add the `Nxf.groovy <example/lib/Nxf.groovy>`_ script to the :code:`lib` directory of 
-your pipeline. In each process where you want to use :code:`nxfvars`, add the following line
-to the :code:`script` section, right before executing the python script: 
+Add the  `nxfvars.nf<example/nxfvars.nf>`_ script to your pipeline. Import the 
+`nxfVars` function as follows: 
 
 .. code-block::
 
-    ${Nxf.vars(this, task)}
+    import { nxfVars } from "./nxfvars.nf"
+
+In each process where you want to use `nxfvars`, add the following line
+to the `script` section, right before executing the python script or notebook: 
+
+.. code-block::
+
+    ${nxfVars(task)}
 
 
 For instance: 
@@ -42,7 +48,7 @@ For instance:
 
         script:
         """
-        ${Nxf.vars(this, task)}
+        ${nxfVars(task)}
         jupyter nbconvert notebook.ipynb --execute --to html 
         """
     }
