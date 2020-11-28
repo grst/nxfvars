@@ -19,7 +19,7 @@ PyPI and conda will follow at some point.
 Usage
 -----
 
-Add the  `nxfvars.nf<example/nxfvars.nf>`_ script to your pipeline. Import the 
+Add the  `nxfvars.nf <example/nxfvars.nf>`_ script to your pipeline. Import the 
 `nxfVars` function as follows: 
 
 .. code-block::
