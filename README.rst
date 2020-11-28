@@ -83,7 +83,9 @@ How it works
 ------------
 
 The groovy library serializes the nextflow variables and encodes
-them into an environment variable, which is injected using :code:`${Nxf.vars(this, task)}`. 
+them into an environment variable, which is injected using :code:`${nxfVars(task)}`. 
+See also my `blog post <https://grst.github.io/bioinformatics/2020/11/28/low-level-nextflow-hacking.html>`_
+about Nextflow's implicit variables `this` and `task`. 
 
 The :code:`nxfvars` Python library decodes the env var and makes the values 
 conveniently accessible
