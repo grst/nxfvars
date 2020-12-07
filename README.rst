@@ -24,7 +24,7 @@ Install the development version from GitHub
     pip install . 
 
 
-PyPI and conda will follow at some point. 
+conda will follow at some point. 
 
 Usage
 -----
