@@ -36,7 +36,7 @@ to the `script` section, right before executing the python script or notebook:
 
 For instance: 
 
-.. code-block:: nextflow
+.. code-block:: 
 
     process TEST { 
         cpus 2
