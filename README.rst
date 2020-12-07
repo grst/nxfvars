@@ -34,7 +34,7 @@ Add the  `nxfvars.nf <example/nxfvars.nf>`_ script to your pipeline. Import the
 
 .. code-block::
 
-    import { nxfVars } from "./nxfvars.nf"
+    include { nxfVars } from "./nxfvars.nf"
 
 In each process where you want to use `nxfvars`, add the following line
 to the `script` section, right before executing the python script or notebook: 
