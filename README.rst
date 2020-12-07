@@ -7,6 +7,16 @@ python scripts or notebooks.
 Installation
 ------------
 
+Using pip
+^^^^^^^^^
+
+.. code-block::
+    
+    pip install nxfvars
+    
+Install the development version from GitHub
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. code-block::
     
     git clone git@github.com:grst/nxfvars.git
