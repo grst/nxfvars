@@ -1,9 +1,9 @@
-Nxfvars: Parametrize Notebooks from Nextflow 
-============================================
+Nxfvars: Parameterize Notebooks from Nextflow 
+=============================================
 
-Nxfvars makes it easy to parametrize Jupyter notebooks, Rmarkdown notebooks, or plain 
+Nxfvars makes it easy to parameterize Jupyter notebooks, Rmarkdown notebooks, or plain 
 Python scripts from a Nextflow process. All variables accessible in
-a process's `script` section are made available directly in the notebook.  
+a process's ``script`` section are made available directly in the notebook.  
 
 
 Using nxfvars in a Nextflow pipeline
@@ -28,8 +28,8 @@ Import the `nxfvars` function and call it from the script section of your proces
 
 When the process is executed, nxfvars generates a ``.params.yml`` file
 in the work directory. It contains all variables that can be accessed in the `script`
-section. The YAML-file can be consumed with the nxfvars python library,
-`papermill <https://papermill.readthedocs.io/en/latest/usage-parameterize.html>`_,
+section. The YAML-file can be consumed by the nxfvars Python library,
+`Papermill <https://papermill.readthedocs.io/en/latest/usage-parameterize.html>`_,
 or any YAML parser (see below). 
 
 
@@ -50,7 +50,8 @@ In python, nextflow variables can be accessed through the ``nxfvars`` object:
     from nxfvars import nxfvars
     
     print(nxfvars["foo"])
-    print(nxfvars["params]["bar])
+    print(nxfvars["params"]["bar"])
+    print(nxfvars["task"]["cpus"])
 
 It is common to execute notebooks interactively during development and run them later
 with parameters. In that case you can use ``.get()`` to obtain default values, 
@@ -58,11 +59,13 @@ when a ``.params.yml`` is not yet present
 
 .. code-block:: python
 
-    print(nxfvars.get("foo", "default value for development"))
+    nxfvars.get("foo", "default value for development")
 
 
 From nextflow, just invoke the python script, or use e.g. ``jupyter nbconvert`` to 
-execute the notebook. ``nxfvars execute`` is a convenient wrapper around ``jupytext`` and
+execute the notebook. 
+
+``nxfvars execute`` is a convenient wrapper around ``jupytext`` and
 ``jupyter nbconvert`` to execute and convert arbitrary jupytext notebook formats 
 to a html report. 
 
@@ -84,7 +87,7 @@ to a html report.
 Usage with Papermill
 --------------------
 
-Papermill is an established library for parametrizing jupyter notebooks. It can 
+Papermill is an established library for parameterizing jupyter notebooks. It can 
 readily consume yaml files generated with nxfvars. 
 
 .. code-block:: nextflow
