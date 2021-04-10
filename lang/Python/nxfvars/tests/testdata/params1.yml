@@ -1,0 +1,41 @@
+args: []
+params:
+  global_param: Hey, I'm a global parameter
+  module_param: Hey, I'm a module parameter
+baseDir: /home/sturm/projects/2020/nxfvars/example
+projectDir: /home/sturm/projects/2020/nxfvars/example
+workDir: /home/sturm/projects/2020/nxfvars/example/work
+workflow: 'repository: null, projectDir: /home/sturm/projects/2020/nxfvars/example,
+  commitId: null, revision: null, startTime: 2021-04-10T12:47:05.023726+02:00, endTime:
+  null, duration: null, container: {}, commandLine: nextflow ./main.nf, nextflow:
+  nextflow.NextflowMeta(version:20.10.0, build:5430, timestamp:01-11-2020 15:14 UTC,
+  preview:nextflow.NextflowMeta$Preview@343e225a, enable:nextflow.NextflowMeta$Features@4c0e426a,
+  dsl2:true, strictModeEnabled:false, dsl2Final:true), success: false, workDir: /home/sturm/projects/2020/nxfvars/example/work,
+  launchDir: /home/sturm/projects/2020/nxfvars/example, profile: standard'
+nextflow: nextflow.NextflowMeta(version:20.10.0, build:5430, timestamp:01-11-2020
+  15:14 UTC, preview:nextflow.NextflowMeta$Preview@343e225a, enable:nextflow.NextflowMeta$Features@4c0e426a,
+  dsl2:true, strictModeEnabled:false, dsl2Final:true)
+launchDir: /home/sturm/projects/2020/nxfvars/example
+moduleDir: /home/sturm/projects/2020/nxfvars/example/.
+bar: bar
+foo: test_input.txt
+nxfvars: nxfvars
+task:
+  process: TEST_SCRIPT
+  cpus: '2'
+  index: '1'
+  echo: 'false'
+  validExitStatus:
+  - '0'
+  publishDir:
+  - mode: copy
+    path: results/result_script
+  maxRetries: '0'
+  maxErrors: '-1'
+  shell:
+  - /bin/bash
+  - -ue
+  executor: local
+  conda: conda-forge::setuptools_scm conda-forge::flit
+  cacheable: 'true'
+  errorStrategy: TERMINATE

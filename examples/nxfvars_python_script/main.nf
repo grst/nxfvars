@@ -5,7 +5,7 @@ params.global_param = "Hey, I'm a global parameter"
 
 include { 
     TEST_SCRIPT;
-    TEST_NOTEBOOK
+    // TEST_NOTEBOOK
 } from "./test" addParams(module_param: "Hey, I'm a module parameter")
 
 //this, obviously, should become a pip-installable package at some point 
@@ -15,10 +15,10 @@ nxfvars = file("..")
 
 workflow {
     TEST_SCRIPT("bar", Channel.fromPath("data/test_input.txt"), nxfvars)
-    TEST_NOTEBOOK(
-        Channel.fromPath("data/test_notebook.ipynb"), 
-        "bar",
-        Channel.fromPath("data/test_input.txt"),
-        nxfvars
-    )
+    // TEST_NOTEBOOK(
+    //     Channel.fromPath("data/test_notebook.ipynb"), 
+    //     "bar",
+    //     Channel.fromPath("data/test_input.txt"),
+    //     nxfvars
+    // )
 }
