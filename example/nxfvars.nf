@@ -1,29 +1,74 @@
-import groovy.json.JsonBuilder
+@Grab(group='org.yaml', module='snakeyaml', version='1.28')
 
+import org.yaml.snakeyaml.Yaml
+import org.yaml.snakeyaml.DumperOptions
+
+/**
+ * recursivly convert a groovy map to strings. Maps and Lists are descended into,
+ * all other objects are converted to string. 
+ */
+def mapToString(map) { 
+    return map.collectEntries {
+        key, val -> {
+            if (val instanceof Map) {
+                [key, mapToString(val)]
+            } else if (val instanceof List) {
+                [key, listToString(val)]
+            } else {
+                [key, val.toString()]
+            }
+        }
+    }
+}
+
+
+/**
+ * recursivly convert a groovy list to strings. Maps and Lists are descended into,
+ * all other objects are converted to string. 
+ */
+def listToString(list) {
+    return list.collect {
+        val -> {
+            if (val instanceof Map) {
+                mapToString(val)
+            } else if (val instanceof List) {
+                listToString(val)
+            } else {
+                val.toString()
+            }
+        }
+    }
+}
+
+
+/**
+ * Create a config file from all variables accessible in a nextflow process. 
+ *
+ * @params task The process' `task` variable
+ * @returns a line to be inserted in the bash script. 
+ */ 
 def nxfVars(task) {
     // get rid of `$` variable and `task`. We'll cover the latter separately. 
     def tmp_inputs = task.binding.findAll { 
         it.key != '$' && it.key != 'task' 
     }
     def tmp_task = task.binding.task.each { it }
-    def tmp_params = this.binding.variables['params']
 
-    // convert all agruments to Strings
-    // otherwise it can't be converted to json and
-    // I currently don't see why we would need a higher nesting level. 
-    def nxf_vars = [input: tmp_inputs, task: tmp_task, params: tmp_params].collectEntries {
-        [it.key, it.value.collectEntries {
-            [it.key, it.value.toString()]
-        }]
-    }
+    // inputs on the first level, task and params as separate dictionaries. 
+    def nxf_vars = this.binding.variables + tmp_inputs + [task: tmp_task]
 
-    // convert to json
-    def builder = new JsonBuilder()
-    builder(nxf_vars)
+    // convert to string recursively - e.g. paths need to be converted
+    // to strings explicitly
+    nxf_vars = mapToString(nxf_vars)
 
-    // convert to base 64 string
-    def nxf_vars_b64 = builder.toString().bytes.encodeBase64().toString()
+    DumperOptions options = new DumperOptions();
+    options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+    def yaml = new Yaml(options)
+    def yaml_str = yaml.dump(nxf_vars)
 
-    // Generate a line that can be added to the bash script. 
-    "export NXF_VARS=\"${nxf_vars_b64}\""
+    // this does not work (it only works in 'exec:', but not if there is a `script:` section. )
+    // task.workDir.resolve('.params.yml').text = yaml_str
+
+    //therefore, we inject it into the bash script: 
+    return """cat <<"END_PARAMS_SECTION" > ./.params.yml\n${yaml_str}\nEND_PARAMS_SECTION\n\n"""
 }

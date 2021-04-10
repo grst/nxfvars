@@ -2,6 +2,8 @@ params.module_param = "bar"
 
 include {nxfVars} from "./nxfvars.nf"
 
+
+
 process TEST_SCRIPT {
 
     conda "conda-forge::setuptools_scm conda-forge::flit"
@@ -24,25 +26,25 @@ process TEST_SCRIPT {
 }
 
 
-process TEST_NOTEBOOK {
+// process TEST_NOTEBOOK {
     
-    conda "conda-forge::jupyterlab conda-forge::ipython=7.19.0 conda-forge::setuptools_scm conda-forge::flit"
-    publishDir "results/result_notebook", mode: 'copy'
-    cpus 2
+//     conda "conda-forge::jupyterlab conda-forge::ipython=7.19.0 conda-forge::setuptools_scm conda-forge::flit"
+//     publishDir "results/result_notebook", mode: 'copy'
+//     cpus 2
 
-    input:
-    path notebook
-    val bar
-    path foo
-    path nxfvars
+//     input:
+//     path notebook
+//     val bar
+//     path foo
+//     path nxfvars
 
-    output:
-    path "*.html"
+//     output:
+//     path "*.html"
 
-    script:
-    """
-    ${nxfVars(task)}
-    jupyter nbconvert ${notebook} --execute --to html 
-    """
-}
+//     script:
+//     """
+//     ${nxfVars(task)}
+//     jupyter nbconvert ${notebook} --execute --to html 
+//     """
+// }
 

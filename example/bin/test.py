@@ -2,7 +2,8 @@
 
 import sys
 
-sys.path.insert(0, "nxfvars")
+sys.exit(0)
+
 from nxfvars import nxf
 
 print("Input 'bar': ", nxf.input("bar"))
