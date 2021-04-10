@@ -15,7 +15,7 @@ Nxfvars makes it easy to parameterize Jupyter notebooks, Rmarkdown notebooks, or
 Python scripts from a Nextflow process. All variables accessible in
 a process's ``script`` section are made available directly in the notebook.  
 
-**WARNING: This project is still work-in-progress. Not all of the examples in the README work already.**
+**WARNING: This project is still work-in-progress. Not all of the examples in the README work yet.**
 
 
 
