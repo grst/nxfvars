@@ -12,10 +12,10 @@ Using nxfvars in a Nextflow pipeline
 Download `nxfvars.nf <lang/nextflow/nxfvars.nf>`_ and add the script to your pipeline. 
 Import the `nxfvars` function and call it from the script section of your process: 
 
-.. code-block:: console
+.. code-block:: nextflow
 
     nextflow.enable.dsl = 2
-    import { nxfvars } from "./nxfvars.nf"
+    include { nxfvars } from "./nxfvars.nf"
 
     process foo {
         script:
@@ -37,7 +37,11 @@ Usage with the nxfvars Python library
 -------------------------------------
 
 The nxfvars Python library is a thin wrapper around a YAML parser. It may be used
-from both Jupyter notebooks or plain Python scripts.
+from both Jupyter notebooks or plain Python scripts. You can install it using pip:
+
+.. code-block:: bash
+
+    pip install nxfvars
 
 In python, nextflow variables can be accessed through the ``nxfvars`` object: 
 

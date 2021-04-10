@@ -1,20 +1,11 @@
 #!/usr/bin/env python
 
-import sys
+from nxfvars import nxfvars
 
-sys.exit(0)
+print("input_value:", nxfvars["input_value"])
+print("input_file:", nxfvars["input_file"])
+print("params.global_param:", nxfvars["params"]["global_param"])
+print("task.cpus:", nxfvars["task"]["cpus"])
 
-from nxfvars import nxf
-
-print("Input 'bar': ", nxf.input("bar"))
-print("Input 'foo': ", nxf.input("foo"))
-print("Params 'global_param': ", nxf.params("global_param"))
-print("Params 'module_param': ", nxf.params("module_param"))
-print("Task 'cpus': ", nxf.params("module_param"))
-
-print()
-with open(nxf.input("foo")) as f:
-    print("The content of 'foo' is ", "".join(f.readlines()))
-
-
-print("Hello World!")
+with open(nxfvars["input_file"]) as f:
+    print(f"The content of {nxfvars['input_file']} is:", "".join(f.readlines()))

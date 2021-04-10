@@ -1,24 +1,29 @@
 #!/usr/bin/env nextflow
+
 nextflow.enable.dsl=2
+params.global_param = "Hey, I'm a global parameter!"
 
-params.global_param = "Hey, I'm a global parameter"
+include { nxfvars } from "./nxfvars.nf"
 
-include { 
-    TEST_SCRIPT;
-    // TEST_NOTEBOOK
-} from "./test" addParams(module_param: "Hey, I'm a module parameter")
+process nxfvars_python_script {
 
-//this, obviously, should become a pip-installable package at some point 
-// instead of staging it manually
-nxfvars = file("..") 
+    publishDir "results"
+    cpus 2
 
+    input:
+    val input_value 
+    path input_file 
+
+    output:
+    path "result.txt"
+
+    script:
+    """
+    ${nxfvars(task)}
+    test.py > result.txt
+    """
+}
 
 workflow {
-    TEST_SCRIPT("bar", Channel.fromPath("data/test_input.txt"), nxfvars)
-    // TEST_NOTEBOOK(
-    //     Channel.fromPath("data/test_notebook.ipynb"), 
-    //     "bar",
-    //     Channel.fromPath("data/test_input.txt"),
-    //     nxfvars
-    // )
+    nxfvars_python_script("bar", Channel.fromPath(params.test_file))
 }

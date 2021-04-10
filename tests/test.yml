@@ -1,0 +1,10 @@
+- name: nxfvars_python_script
+  command: nextflow run examples/nxfvars_python_script -c tests/nextflow.config
+  files:
+    - path: results/result.txt 
+      contains: 
+        - "input_value: bar"
+        - "input_file: hello.txt"
+        - "params.global_param: Hey, I'm a global parameter!"
+        - "task.cpus: 2"
+        - "The content of hello.txt is: Hello World!"

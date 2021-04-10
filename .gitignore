@@ -1,4 +1,5 @@
 work
+results
 .nextflow*
 *.code-workspace
 .vscode
