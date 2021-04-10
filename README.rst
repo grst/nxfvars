@@ -1,5 +1,14 @@
 Nxfvars: Parameterize Notebooks from Nextflow 
 =============================================
+|pytestworkflow| |pytest|
+
+.. |pytest| image:: https://github.com/grst/nxfvars/actions/workflows/pytest-nxfvars-python.yml/badge.svg
+     :target: https://github.com/grst/nxfvars/actions/workflows/pytest-nxfvars-python.yml
+     :alt: CI test for the nxfvars python library
+     
+.. |pytestworkflow| image:: https://github.com/grst/nxfvars/actions/workflows/pytest-workflow-examples.yml/badge.svg
+    :target: https://github.com/grst/nxfvars/actions/workflows/pytest-workflow-examples.yml
+    :alt: Running the examples with pytest-workflow
 
 Nxfvars makes it easy to parameterize Jupyter notebooks, Rmarkdown notebooks, or plain 
 Python scripts from a Nextflow process. All variables accessible in
