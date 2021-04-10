@@ -26,7 +26,7 @@ Import the `nxfvars` function and call it from the script section of your proces
         """
     }
 
-When the process is executed, nxfvars generates a `.params.yml` file
+When the process is executed, nxfvars generates a ``.params.yml`` file
 in the work directory. It contains all variables that can be accessed in the `script`
 section. The YAML-file can be consumed with the nxfvars python library,
 `papermill <https://papermill.readthedocs.io/en/latest/usage-parameterize.html>`_,
@@ -39,7 +39,7 @@ Usage with the nxfvars Python library
 The nxfvars Python library is a thin wrapper around a YAML parser. It may be used
 from both Jupyter notebooks or plain Python scripts.
 
-In python, nextflow variables can be accessed through the `nxfvars` object: 
+In python, nextflow variables can be accessed through the ``nxfvars`` object: 
 
 .. code-block:: python
 
@@ -49,17 +49,17 @@ In python, nextflow variables can be accessed through the `nxfvars` object:
     print(nxfvars["params]["bar])
 
 It is common to execute notebooks interactively during development and run them later
-with parameters. In that case you can use `.get()` to obtain default values, 
-when a `.params.yml` is not yet present
+with parameters. In that case you can use ``.get()`` to obtain default values, 
+when a ``.params.yml`` is not yet present
 
 .. code-block:: python
 
     print(nxfvars.get("foo", "default value for development"))
 
 
-From nextflow, just invoke the python script, or use e.g. `jupyter nbconvert` to 
-execute the notebook. `nxfvars execute` is a convenient wrapper around `jupytext` and
-`jupyter nbconvert` to execute and convert arbitrary jupytext notebook formats 
+From nextflow, just invoke the python script, or use e.g. ``jupyter nbconvert`` to 
+execute the notebook. ``nxfvars execute`` is a convenient wrapper around ``jupytext`` and
+``jupyter nbconvert`` to execute and convert arbitrary jupytext notebook formats 
 to a html report. 
 
 .. code-block:: nextflow
@@ -130,10 +130,10 @@ in the future by porting the nxfvars library to R.
 How it works
 ------------
 
-All variables in a nextflow process (except local variables declared with `def`) can be 
-programmatically accessed through Nextflow's implicit variables `this` and `task`. 
+All variables in a nextflow process (except local variables declared with ``def``) can be 
+programmatically accessed through Nextflow's implicit variables ``this`` and ``task``. 
 See also my `blog post <https://grst.github.io/bioinformatics/2020/11/28/low-level-nextflow-hacking.html>`_
 about these variables. 
 
-The `nxvfars(task)` function encodes all variables as YAML and injects it into the 
+The ``nxvfars(task)`` function encodes all variables as YAML and injects it into the 
 bash script. 
