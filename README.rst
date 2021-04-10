@@ -12,7 +12,7 @@ Using nxfvars in a Nextflow pipeline
 Download `nxfvars.nf <lang/nextflow/nxfvars.nf>`_ and add the script to your pipeline. 
 Import the `nxfvars` function and call it from the script section of your process: 
 
-.. code-block:: nextflow
+.. code-block:: console
 
     nextflow.enable.dsl = 2
     import { nxfvars } from "./nxfvars.nf"
