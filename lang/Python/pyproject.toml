@@ -24,3 +24,8 @@ requires = [
     'pytoml',
     'pyyaml',
 ]
+[tool.flit.metadata.requires-extra]
+test = [
+    'pytest',
+    'black'
+]
