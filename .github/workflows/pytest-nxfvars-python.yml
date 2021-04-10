@@ -29,10 +29,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          pip install .[test]
+          cd lang/Python && pip install .[test]
       - name: Check black formatting
         run: |
           black --check .
       - name: Test with pytest
         run: |
-          pytest lang/Python
+          cd lang/Python && pytest

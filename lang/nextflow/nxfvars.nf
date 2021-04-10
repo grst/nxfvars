@@ -49,8 +49,9 @@ def listToString(list) {
  */ 
 def nxfvars(task) {
     // get rid of `$` variable and `task`. We'll cover the latter separately. 
+    // workflow and nextflow contain object ids or timestamps and break caching. 
     def tmp_inputs = task.binding.findAll { 
-        it.key != '$' && it.key != 'task' 
+        it.key != '$' && it.key != 'task' && it.key != "workflow" && it.key != "nextflow"
     }
     def tmp_task = task.binding.task.each { it }
 
