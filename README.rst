@@ -12,10 +12,10 @@ Using nxfvars in a Nextflow pipeline
 Download `nxfvars.nf <lang/nextflow/nxfvars.nf>`_ and add the script to your pipeline. 
 Import the `nxfvars` function and call it from the script section of your process: 
 
-.. code-block::
+.. code-block:: nextflow
 
     nextflow.enable.dsl = 2
-    import {nxfvars} from "./nxfvars.nf"
+    import { nxfvars } from "./nxfvars.nf"
 
     process foo {
         script:
@@ -41,7 +41,7 @@ from both Jupyter notebooks or plain Python scripts.
 
 In python, nextflow variables can be accessed through the `nxfvars` object: 
 
-.. code-block::
+.. code-block:: python
 
     from nxfvars import nxfvars
     
@@ -52,7 +52,7 @@ It is common to execute notebooks interactively during development and run them 
 with parameters. In that case you can use `.get()` to obtain default values, 
 when a `.params.yml` is not yet present
 
-.. code-block::
+.. code-block:: python
 
     print(nxfvars.get("foo", "default value for development"))
 
@@ -62,7 +62,7 @@ execute the notebook. `nxfvars execute` is a convenient wrapper around `jupytext
 `jupyter nbconvert` to execute and convert arbitrary jupytext notebook formats 
 to a html report. 
 
-.. code-block::
+.. code-block:: nextflow
 
     process nxfvars_python {
         script:
@@ -83,7 +83,7 @@ Usage with Papermill
 Papermill is an established library for parametrizing jupyter notebooks. It can 
 readily consume yaml files generated with nxfvars. 
 
-.. code-block::
+.. code-block:: nextflow
 
     process papermill {
 
@@ -106,7 +106,7 @@ Usage with Rmarkdown
 For now, we use an R snippet to parse the yaml file. This could be facilitated
 in the future by porting the nxfvars library to R. 
 
-.. code-block::
+.. code-block:: nextflow
 
     process rmarkdown {
 
