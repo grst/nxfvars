@@ -25,11 +25,12 @@ requires = [
     'pyyaml',
     'jupytext',
     'nbconvert>=4.2',
+    'ipykernel'
 ]
 [tool.flit.metadata.requires-extra]
 test = [
     'pytest',
-    'black'
+    'black',
 ]
 [tool.flit.scripts]
 nxfvars = "nxfvars.cli:main"
