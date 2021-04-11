@@ -114,9 +114,9 @@ readily consume yaml files generated with nxfvars.
         """
         ${nxfvars(task)}
 
-        papermill some_notebook.ipynb notebook_executed.ipynb -f .params.yml
+        papermill some_notebook.ipynb notebook_executed.ipynb -f .params.yml -k python3
         # optional: convert to HTML report
-        jupyter nbconvert --to html -o report.html notebook_executed.ipynb
+        jupyter nbconvert --to html --output report.html notebook_executed.ipynb
         """
     }
 
