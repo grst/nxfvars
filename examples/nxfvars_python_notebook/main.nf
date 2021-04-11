@@ -16,7 +16,6 @@ process nxfvars_python_notebook {
     path input_file 
 
     output:
-    path "result.txt"
     path "report.html"
 
     script:
@@ -27,5 +26,9 @@ process nxfvars_python_notebook {
 }
 
 workflow {
-    nxfvars_python_script("bar", Channel.fromPath(params.test_file))
+    nxfvars_python_notebook(
+        "bar",
+        Channel.fromPath(projectDir + "/notebook.ipynb"), 
+        Channel.fromPath(params.test_file)
+    )
 }

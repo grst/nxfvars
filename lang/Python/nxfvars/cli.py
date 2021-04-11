@@ -30,7 +30,6 @@ def main():
     args = parser.parse_args()
 
     if args.subcommand == "execute":
-        print(args)
         nxfvars_execute(args.notebook, args.report, kernel_name=args.kernel_name)
     elif args.subcommand == "version":
         print(__version__)
