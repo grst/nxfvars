@@ -15,9 +15,6 @@ Nxfvars makes it easy to parameterize Jupyter notebooks, Rmarkdown notebooks, or
 Python scripts from a Nextflow process. All variables accessible in
 a process's ``script`` section are made available directly in the notebook.  
 
-**WARNING: This project is still work-in-progress. Not all of the examples in the README work yet.**
-
-
 
 Using nxfvars in a Nextflow pipeline
 ------------------------------------
@@ -78,9 +75,9 @@ when a ``.params.yml`` is not yet present
 From nextflow, just invoke the python script, or use e.g. ``jupyter nbconvert`` to 
 execute the notebook. 
 
-``nxfvars execute`` is a convenient wrapper around ``jupytext`` and
-``jupyter nbconvert`` to execute and convert arbitrary jupytext notebook formats 
-to a html report. 
+``nxfvars execute`` is a convenient wrapper around `jupytext <https://jupytext.readthedocs.io/en/latest/>`_
+and `jupyter nbconvert <https://nbconvert.readthedocs.io/en/latest/>`_ to execute and 
+convert arbitrary jupytext notebook formats to a html report. 
 
 .. code-block:: nextflow
 
@@ -159,5 +156,5 @@ programmatically accessed through Nextflow's implicit variables ``this`` and ``t
 See also my `blog post <https://grst.github.io/bioinformatics/2020/11/28/low-level-nextflow-hacking.html>`_
 about these variables. 
 
-The ``nxvfars(task)`` function encodes all variables as YAML and injects it into the 
+The ``nxvfars(task)`` function encodes all variables as YAML and injects them into the 
 bash script. 
