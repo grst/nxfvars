@@ -46,6 +46,10 @@ or any YAML parser (see below).
 Usage with the nxfvars Python library
 -------------------------------------
 
+.. 
+
+   Full examples at `examples/nxfvars_python_script <examples/nxfvars_python_script>`_ and `examples/nxfvars_python_notebook <examples/nxfvars_python_notebook>`_.
+
 The nxfvars Python library is a thin wrapper around a YAML parser. It may be used
 from both Jupyter notebooks or plain Python scripts. You can install it using pip:
 
@@ -96,6 +100,9 @@ convert arbitrary jupytext notebook formats to a html report.
 
 Usage with Papermill
 --------------------
+.. 
+
+   Full example at `examples/papermill <examples/papermill>`_ 
 
 Papermill is an established library for parameterizing jupyter notebooks. It can 
 readily consume yaml files generated with nxfvars. 
@@ -119,6 +126,9 @@ readily consume yaml files generated with nxfvars.
 
 Usage with Rmarkdown
 --------------------
+.. 
+
+   Full example at `examples/rmarkdown <examples/rmarkdown>`_ 
 
 For now, we use the following R snippet (``render.R``) to parse the yaml file and
 render the notebook with ``rmarkdown``. This could be facilitated in the future by 
