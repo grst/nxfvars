@@ -49,14 +49,17 @@ def listToString(list) {
  */ 
 def nxfvars(task) {
     // get rid of `$` variable and `task`. We'll cover the latter separately. 
-    // workflow and nextflow contain object ids or timestamps and break caching. 
     def tmp_inputs = task.binding.findAll { 
-        it.key != '$' && it.key != 'task' && it.key != "workflow" && it.key != "nextflow"
+        it.key != '$' && it.key != 'task' 
     }
     def tmp_task = task.binding.task.each { it }
+    // workflow and nextflow contain object ids or timestamps and break caching. 
+    def tmp_vars = this.binding.variables.findAll {
+        it.key != "workflow" && it.key != "nextflow"
+    }
 
     // inputs on the first level, task and params as separate dictionaries. 
-    def nxf_vars = this.binding.variables + tmp_inputs + [task: tmp_task]
+    def nxf_vars = tmp_vars + tmp_inputs + [task: tmp_task]
 
     // convert to string recursively - e.g. paths need to be converted
     // to strings explicitly

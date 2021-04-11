@@ -1,0 +1,31 @@
+---
+title: nxfvars example notebook
+params:
+  nxfvars:
+    value:
+      input_file: "../data/hello.txt"
+      input_value: "default value for interactive development"
+      params:
+          global_param: "default value for interactive development"
+      task:
+          cpus: 1
+---
+
+The additional nesting of `nxfvars` below `params` is necessary to allow 
+nxfvars to pass additional parameters that are not specified in the yaml frontmatter. 
+When passing the argument directly to `params`, rendering will fail with the following
+message: 
+
+```
+Error in knit_params_get(input_lines, params) : 
+  render params not declared in YAML: args, baseDir, projectDir, workDir, workflow, nextflow, launchDir, moduleDir, notebook
+```
+
+```{r}
+nxfvars = params$nxfvars
+print(paste("input_file:", nxfvars$input_file))
+print(paste("input_value:", nxfvars$input_value))
+print(paste("params.global_param:", nxfvars$params$global_param))
+print(paste("task.cpus:", nxfvars$task$cpus))
+print(paste("The content of", nxfvars$input_file, "is:", paste(readLines(nxfvars$input_file), collapse="")))
+```

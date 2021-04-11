@@ -30,3 +30,14 @@
         - "params.global_param: Hey, I&#39;m a global parameter!"
         - "task.cpus: 2"
         - "The content of hello.txt is: Hello World!"
+
+- name: rmarkdown 
+  command: nextflow run examples/rmarkdown -c tests/nextflow.config
+  files:
+    - path: results/report.html
+      contains: 
+        - "input_value: bar"
+        - "input_file: hello.txt"
+        - "params.global_param: Hey, I&#39;m a global parameter!"
+        - "task.cpus: 2"
+        - "The content of hello.txt is: Hello World!"

@@ -123,13 +123,21 @@ readily consume yaml files generated with nxfvars.
 Usage with Rmarkdown
 --------------------
 
-For now, we use an R snippet to parse the yaml file. This could be facilitated
-in the future by porting the nxfvars library to R. 
+For now, we use the following R snippet (``render.R``) to parse the yaml file and
+render the notebook with ``rmarkdown``. This could be facilitated in the future by 
+porting the nxfvars library to R. 
+
+.. code-block:: R
+
+    # USAGE: render.R notebook.Rmd report.html
+    args = commandArgs(trailingOnly=TRUE)
+    nxfvars = list(nxfvars = yaml::read_yaml('.params.yml'))
+    rmarkdown::render(args[1], params = nxfvars, output_file=args[2])
 
 .. code-block:: nextflow
 
     process rmarkdown {
-
+        stageInMode "copy" // work around https://github.com/rstudio/rmarkdown/issues/1508
         output:
             file("report.html"), emit: report
 
@@ -137,11 +145,7 @@ in the future by porting the nxfvars library to R.
         """
         ${nxfvars(task)}
 
-        Rscript -e "rmarkdown::render(
-            'notebook.Rmd', 
-            params = yaml::read_yaml('.params.yml')),
-            output_file = "report.html"
-        )"
+        render.R 'notebook.Rmd' 'report.html'
         """
     }
 
