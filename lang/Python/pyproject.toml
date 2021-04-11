@@ -23,9 +23,13 @@ requires-python = '>= 3.8'
 requires = [
     'pytoml',
     'pyyaml',
+    'jupytext',
+    'nbconvert>=4.2',
 ]
 [tool.flit.metadata.requires-extra]
 test = [
     'pytest',
     'black'
 ]
+[tool.flit.scripts]
+nxfvars = "nxfvars.cli:main"
