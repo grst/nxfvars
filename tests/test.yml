@@ -20,8 +20,8 @@
         - "task.cpus: 2"
         - "The content of hello.txt is: Hello World!"
 
-- name: nxfvars_papermill
-  command: nextflow run examples/nxfvars_papermill -c tests/nextflow.config
+- name: papermill 
+  command: nextflow run examples/papermill -c tests/nextflow.config
   files:
     - path: results/report.html
       contains: 

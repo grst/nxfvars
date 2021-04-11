@@ -5,7 +5,7 @@ params.global_param = "Hey, I'm a global parameter!"
 
 include { nxfvars } from "./nxfvars.nf"
 
-process nxfvars_python_notebook {
+process papermill {
 
     publishDir "results"
     cpus 2
@@ -29,7 +29,7 @@ process nxfvars_python_notebook {
 }
 
 workflow {
-    nxfvars_python_notebook(
+  papermill(
         "bar",
         Channel.fromPath(projectDir + "/notebook.ipynb"), 
         Channel.fromPath(params.test_file)
